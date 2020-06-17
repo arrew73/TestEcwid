@@ -1,19 +1,27 @@
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.stream.Collectors;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class Search {
-    public static void main(String[] args) throws Exception {
-        Scanner sc = new Scanner(new File("F:/ip_addresses"));
-        ArrayList<String> ip = new ArrayList<>();
-        while (sc.hasNext()){
-            ip.add(sc.nextLine());
-            List<String> ip2 = ip.stream().distinct().collect(Collectors.toList());
-            ip= (ArrayList<String>) ip2;
+    public static int countUnique = 0;
+
+    public static void main(String[] args) throws IOException {
+        search();
+        System.out.println(countUnique);
+    }
+    public static void search() throws IOException{
+        while (true) {
+            Files.lines(Paths.get("f:/ip_addresses"))
+                    .distinct()
+                .forEach(System.out::println);
+            countUnique++;
         }
-        System.out.println(ip.size());
     }
 
 }
+
+
+
+
+
+
